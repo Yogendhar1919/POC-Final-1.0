@@ -31,6 +31,7 @@ export class CropListComponent implements OnInit {
   @HostListener('loaded')
   ngOnInit() {
     this.cropItems = CaseMock[0].Crops;
+    console.log(this.cropItems);
     this.case = CaseMock[0];
     //this.photos = mockCropARLinePhoto[0];
   }
@@ -45,17 +46,19 @@ export class CropListComponent implements OnInit {
   }
 
   hasPhotos(cropId: number, countyId: number): boolean {
-    if (this.photos === null) return false;
-    let hasPhotos = this.getPhotoCount(cropId, countyId) > 0;
-    return hasPhotos;
+    // if (this.photos === null) return false;
+    // let hasPhotos = this.getPhotoCount(cropId, countyId) > 0;
+    // return hasPhotos;
+    return true;
   }
 
   getPhotoCount(cropId: number, countyId: number): number {
-    if (this.photos === null) return 0;
-    const count = this.photos.CropARLinePhotos.filter(
-      (x) => x.CropId == cropId && x.CountyId == countyId
-    );
-    return count.length;
+    // if (this.photos === null) return 0;
+    // const count = this.photos.CropARLinePhotos.filter(
+    //   (x) => x.CropId == cropId && x.CountyId == countyId
+    // );
+    // return count.length;
+    return 10;
   }
 
   onPolicyCropTap(item: Crop) {
