@@ -1,0 +1,125 @@
+@import 'nativescript-theme-core/css/core.light.css';
+
+.fa {
+  font-family: 'FontAwesome', fontawesome-webfont;
+  font-size: 18;
+  color: #053c91;
+}
+
+.nav-bar {
+  background-color: lightgray;
+  border-width: 1;
+  border-color: lightgray;
+  margin: 2, 0, 0, 0;
+  height: 65;
+}
+
+.nav-buttons {
+  font-size: 14px;
+  padding-bottom: 5;
+  border-style: transparent;
+}
+
+.list-button {
+  background-color: rgba(255, 255, 255, 0.925);
+}
+
+.list-button .arrow-button {
+  padding-left: 8;
+  padding-top: 2;
+}
+
+.disable-button {
+  color: gray;
+}
+
+.action-bar {
+  background-color: #053c91;
+  color: white;
+}
+
+.action-bar Label {
+  color: white;
+}
+
+.action-bar-button {
+  font-size: 14px;
+  margin: 4;
+  padding-right: 8;
+}
+
+.even {
+  background-color: #e6ebf4;
+}
+
+.odd {
+  background-color: rgba(255, 255, 255, 0.925);
+}
+
+.display-text {
+  color: rgb(102, 102, 102);
+}
+
+Label {
+  color: black;
+}
+
+TextView {
+  border: 1;
+  border-width: 1;
+  border-color: gray;
+  margin: 4;
+  font-size: 14;
+}
+
+.claim-list .claim-sort {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.claim-list .no-results {
+  padding-left: 8;
+  padding-top: 8;
+  font-size: 15;
+}
+
+.nav-bar-label {
+  font-size: 9;
+  text-align: center;
+  margin-top: -24;
+  padding-top: 0;
+}
+
+.nav-bar .fa {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-right: 6;
+  font-size: 26;
+}
+
+.nav-bar .fa Button {
+  font-size: 26;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.nav-bar .nav-buttons {
+  font-size: 16;
+  margin-bottom: 0;
+  padding-left: 10;
+  padding-right: 10;
+  padding-bottom: 0;
+}
+
+.action-bar .action-bar-title {
+  text-align: center;
+}
+
+.claim-list .policy-count {
+  padding-left: 10;
+  font-size: 14;
+  font-weight: normal;
+  margin-top: 8;
+  margin-bottom: 8;
+}
