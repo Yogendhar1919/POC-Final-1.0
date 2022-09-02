@@ -20,6 +20,33 @@
       >
       </Button>
     </DockLayout>
-    <StackLayout dock="top" row="0"> </StackLayout>
+    <StackLayout dock="top" row="0">
+      <GridLayout rows="auto,auto,*" col="*" class="claim-list">
+        <StackLayout row="0" col="0"> </StackLayout>
+        <Label
+          *ngIf="cases.length > 0"
+          class="policy-count"
+          row="1"
+          col="0"
+          text="my {{ cases.length }} policies ..."
+        ></Label>
+        <StackLayout
+          *ngIf="cases.length == 0"
+          row="1"
+          col="0"
+          rows="8,*,8"
+          columns="*"
+          class="no-results"
+        >
+          <label text="" row="0" col="0"></label>
+          <label
+            text="No results match your search criteria"
+            row="1"
+            col="0"
+          ></label>
+          <label text="" row="2" col="0"></label>
+        </StackLayout>
+      </GridLayout>
+    </StackLayout>
   </DockLayout>
 </StackLayout>

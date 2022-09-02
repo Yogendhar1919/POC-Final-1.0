@@ -26,7 +26,7 @@ export class CasesListComponent implements OnInit, AfterViewInit {
     this.allCases = CaseMock;
   }
 
-  get claims(): Case[] {
+  get cases(): Case[] {
     return this.casesList;
   }
 }
