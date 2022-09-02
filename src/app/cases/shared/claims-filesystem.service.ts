@@ -5,6 +5,7 @@ import { Path } from './path';
 @Injectable()
 export class ClaimsFileSystemService extends FileSystemService {
   constructor() {
+    super();
   }
 
   getClaimBasePath(caseId: number): Path {

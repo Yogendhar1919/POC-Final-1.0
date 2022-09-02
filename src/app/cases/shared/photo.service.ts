@@ -7,7 +7,7 @@ import {
   CropARLine,
   CropARLinePhoto,
   CasePhotoWrapper,
-  mockphotowrapper
+  mockphotowrapper,
 } from './crop-arline.model';
 import { PhotoLocation } from './field-photo.model';
 import { ClaimsFileSystemService } from './claims-filesystem.service';
@@ -34,9 +34,8 @@ export class PhotoService {
     return 1;
   }
 
-  getPhotos(claimId: number): Observable<ClaimPhotoWrapper> {
-    const db: Couchbase = this.couchbaseService.getPhotoDb();
-    return db.getDocument(ClaimPhotoWrapper.formatKey(claimId));
+  getPhotos(claimId: number): Observable<CasePhotoWrapper> {
+    return of(mockphotowrapper[0]);
   }
 
   loadClaimARLinePhotos(
@@ -54,8 +53,8 @@ export class PhotoService {
     countyId: number = null
   ): CropARLinePhoto[] {
     const photos = new Array<CropARLinePhoto>();
-    let wrapper: ClaimPhotoWrapper = this.getClaimPhotoWrapper(
-      ClaimPhotoWrapper.formatKey(claimid)
+    let wrapper: CasePhotoWrapper = this.getClaimPhotoWrapper(
+      CasePhotoWrapper.formatKey(claimid)
     );
     if (wrapper !== null) {
       //filter photos by crop and county
