@@ -31,3 +31,217 @@
     </StackLayout>
   </ActionItem>
 </ActionBar>
+<StackLayout>
+  <StackLayout #commentsContainer visibility="collapse">
+    <PhotoComment
+      #photocomments
+      [photo]="currentPhoto"
+      [croparline]="arLine"
+    ></PhotoComment>
+  </StackLayout>
+  <DockLayout #formContainer stretchLastChild="true" visibility="visible">
+    <StackLayout dock="bottom" row="1" orientation="horizontal" class="nav-bar">
+      <button
+        disabled="!hasPhotos()"
+        text="&#xf1f8;"
+        class="fa"
+        (tap)="delete()"
+        [ngClass]="{ 'disable-button': !hasPhotos() }"
+        width="25%"
+      ></button>
+      <Button
+        [disabled]="!hasPrevious"
+        [ngClass]="{ 'disable-button': !hasPrevious }"
+        textWrap="true"
+        width="25%"
+        text="&#xf053;"
+        (tap)="previous()"
+        class="fa"
+      >
+      </Button>
+      <Button
+        [disabled]="!hasNext"
+        [ngClass]="{ 'disable-button': !hasNext }"
+        textWrap="true"
+        width="25%"
+        text="&#xf054;"
+        (tap)="next()"
+        class="fa"
+      >
+      </Button>
+      <Button
+        [isEnabled]="!cameraInUse"
+        [ngClass]="{ 'disable-button': cameraInUse }"
+        textWrap="true"
+        width="25%"
+        text="&#xf030;"
+        (tap)="takePicture()"
+        class="fa"
+      ></Button>
+    </StackLayout>
+    <ScrollView dock="top" class="page field-photo">
+      <StackLayout>
+        <PolicyHeader
+          row="0"
+          [cropYear]="arLine.Case.CropYear"
+          [policyNumber]="arLine.Case.PolicyNumber"
+          [county]="arLine.CountyName"
+          [case]="arLine.Case"
+        ></PolicyHeader>
+        <GridLayout
+          rows="*, *,*,*,6,*"
+          columns="70, 120, 75,*"
+          class="field-photo"
+        >
+          <Label text="{{ arLine.CropAbbr }}" row="0" col="0"></Label>
+          <Label text="{{ arLine.UnitNumber }}" row="0" col="1"></Label>
+          <Label
+            text="{{
+              arLine.SectionTownshipRange &&
+              arLine.SectionTownshipRange.length > 3
+                ? arLine.SectionTownshipRange
+                : ''
+            }}"
+            row="0"
+            col="2"
+            colSpan="2"
+          ></Label>
+
+          <Label text="FN: " row="1" col="0"></Label>
+          <Label
+            text="{{ getFarmNumberName(arLine.FarmNumber, arLine.FarmName) }}"
+            row="1"
+            col="1"
+            colSpan="3"
+          ></Label>
+
+          <Label text="Type: " row="2" col="0"></Label>
+          <Label text="{{ arLine.Type }}" row="2" col="1"></Label>
+          <Label text="Practice: " row="2" col="2"></Label>
+          <Label
+            text="{{ getPractice(arLine.Practice) }}"
+            row="2"
+            col="3"
+          ></Label>
+
+          <Label text="Acres: " row="3" col="0"></Label>
+          <Label text="{{ arLine.Acres }}" row="3" col="1"></Label>
+          <Label text="Share: " row="3" col="2"></Label>
+          <Label text="{{ arLine.Share }}" row="3" col="3"></Label>
+
+          <Label text="" row="4" col="0"></Label>
+        </GridLayout>
+        <GridLayout
+          *ngIf="isSearching"
+          orientation="vertical"
+          width="210"
+          height="50"
+        >
+          <Label
+            text="Searching for best direction."
+            horizontalAlignment="center"
+            class="info"
+            row="0"
+            col="0"
+          ></Label>
+        </GridLayout>
+        <GridLayout
+          *ngIf="currentPhoto"
+          rows="*,*,120,8,*,*,*,*,8,*"
+          columns="80, *, 85,*"
+          class="field-photo-current"
+        >
+          <Label
+            *ngIf="photos"
+            text="Photos ({{ getPhotoIndex() }} of {{ photos.length }})"
+            row="0"
+            col="0"
+            colSpan="4"
+            class="photos-header"
+          ></Label>
+
+          <Label text="Comments: " row="1" col="0" colSpan="4"></Label>
+
+          <TextView
+            #editCommentsField
+            [(ngModel)]="currentPhoto.Comments"
+            (tap)="updateComments()"
+            editable="false"
+            row="2"
+            col="0"
+            colspan="4"
+            height="120"
+            hint="No comments have been entered."
+            class="input input-border"
+          ></TextView>
+
+          <Label text="" row="3" col="0" colSpan="4"></Label>
+
+          <Label text="Latitude: " row="4" col="0"></Label>
+          <Label
+            *ngIf="currentPhoto.Latitude"
+            text="{{ currentPhoto.Latitude.toString() | slice: 0:9 }}"
+            row="4"
+            col="1"
+          ></Label>
+          <Label text="Longitude: " row="4" col="2"></Label>
+          <Label
+            *ngIf="currentPhoto.Longitude"
+            text="{{ currentPhoto.Longitude.toString() | slice: 0:9 }}"
+            row="4"
+            col="3"
+          ></Label>
+
+          <Label text="Direction:" row="5" col="0"></Label>
+          <Label
+            *ngIf="currentPhoto.Direction"
+            text="{{ convertDegreesToDirectionText(currentPhoto.Direction) }}"
+            row="5"
+            col="1"
+            colSpan="3"
+          ></Label>
+
+          <Label text="Adjuster:" row="6" col="0"></Label>
+          <Label
+            text="{{ currentPhoto.Adjuster }}"
+            row="6"
+            col="1"
+            colSpan="3"
+          ></Label>
+
+          <Label text="Taken:" row="7" col="0"></Label>
+          <Label
+            *ngIf="currentPhoto.Taken"
+            text="{{ currentPhoto.Taken | date: 'M/d/yy h:mm a' }} {{
+              getPhotoTimeZone(currentPhoto.Taken)
+            }}"
+            row="7"
+            col="1"
+            colSpan="3"
+          ></Label>
+
+          <Label text="" row="8" col="0" colSpan="4"></Label>
+
+          <stacklayout row="9" col="0" colSpan="4">
+            <Label
+              *ngIf="!currentPhoto.File"
+              height="350"
+              textAlignment="center"
+              verticalAlignment="center"
+              text="No photos available"
+            ></Label>
+            <Label
+              *ngIf="currentPhoto.File"
+              text="{{ currentPhoto.FileName }}"
+            ></Label>
+            <Image
+              *ngIf="currentPhoto.File"
+              #arlinephoto
+              src="{{ currentPhotoPath }}"
+            ></Image>
+          </stacklayout>
+        </GridLayout>
+      </StackLayout>
+    </ScrollView>
+  </DockLayout>
+</StackLayout>
