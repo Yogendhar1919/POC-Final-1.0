@@ -1,0 +1,26 @@
+.arline-item {
+  background-color: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4;
+  padding-right: 4;
+}
+
+.arline-item Label {
+  padding-top: 2;
+  padding-bottom: 2;
+  padding-left: 2;
+  padding-right: 2;
+  background-color: transparent;
+  font-size: 15;
+}
+
+.arline-item .fa {
+  padding-top: 4;
+  padding-bottom: 4;
+  padding-left: 8;
+  padding-right: 4;
+  font-size: 22;
+  text-align: center;
+  background-color: transparent;
+}

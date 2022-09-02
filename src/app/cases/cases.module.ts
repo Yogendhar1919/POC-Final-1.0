@@ -10,6 +10,7 @@ import { CasesRoutingModule } from './cases-routing.module';
 import { CropListComponent } from './crop-list/crop-list.component';
 import { ARLineListComponent } from './arline-list/arline-list.component';
 import { CropItemComponent } from './crop-item/crop-item.component';
+import { ARLineItemComponent } from './arline-item/arline-item.component';
 
 @NgModule({
   imports: [

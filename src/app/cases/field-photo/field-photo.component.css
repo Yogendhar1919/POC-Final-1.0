@@ -1,0 +1,75 @@
+.field-photo {
+  padding-top: 6;
+  padding-bottom: 6;
+  padding-left: 8;
+  padding-right: 8;
+  border-bottom-width: 1;
+  border-bottom-color: #d3d2d5;
+}
+
+.field-photo Label {
+  padding-top: 2;
+  padding-bottom: 2;
+  padding-left: 4;
+  padding-right: 4;
+  font-size: 15;
+}
+
+.field-photo-current {
+  padding-top: 12;
+  padding-bottom: 6;
+  padding-left: 8;
+  padding-right: 8;
+}
+
+.field-photo-current Label {
+  padding-top: 2;
+  padding-bottom: 2;
+  padding-left: 4;
+  padding-right: 4;
+  font-size: 15;
+}
+
+.field-photo-current TextView {
+  border-color: #d3d2d5;
+  vertical-align: top;
+  padding: 6;
+}
+
+.photos-header {
+  font-weight: bold;
+  margin-bottom: 12;
+}
+
+.nav-bar-label {
+  font-size: 9;
+  text-align: center;
+  margin-top: -24;
+  padding-top: 0;
+}
+
+.nav-bar fa {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-size: 22;
+}
+
+.nav-bar Button {
+  font-size: 26;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.action-bar .fa {
+  margin-bottom: 0;
+  margin-left: -8;
+  margin-right: 5;
+  margin-top: -3;
+  font-size: 38;
+  font-weight: normal;
+  vertical-align: top;
+}
+
+.info {
+  color: blue;
+}

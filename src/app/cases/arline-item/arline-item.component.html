@@ -1,0 +1,51 @@
+<GridLayout rows="*" columns="*,30" class="arline-item">
+  <GridLayout
+    rows="8,auto, auto, auto,8"
+    columns="*, 70, 75,55"
+    row="0"
+    col="0"
+  >
+    <label text="" row="0" col="0"></label>
+    <Label text="{{ cropARLine.CropAbbr }}" row="1" col="0"></Label>
+    <Label text="{{ cropARLine.UnitNumber }}" row="2" col="0"></Label>
+    <Label
+      text="{{ getSectionTownshipRangeOrFarmNumber() }}"
+      row="3"
+      col="0"
+      colSpan="2"
+    ></Label>
+
+    <label text="" row="0" col="1"></label>
+    <Label text="NOL(s):" row="1" col="1"></Label>
+    <Label text="{{ getNOLs() }}" row="1" col="2"></Label>
+    <Label text="Acres:" row="2" col="1"></Label>
+    <Label text="{{ cropARLine.Acres }}" row="2" col="2"></Label>
+    <Label text="Practice:" row="3" col="1"></Label>
+    <Label
+      text="{{ ('000' + cropARLine.Practice).slice(-3) }}"
+      row="3"
+      col="2"
+    ></Label>
+    <Label
+      *ngIf="hasPhotos"
+      row="1"
+      col="3"
+      text="&#xf03e;"
+      class="fa"
+      rowSpan="3"
+    ></Label>
+    <Label
+      *ngIf="hasPhotos"
+      row="1"
+      col="3"
+      text="{{ photoCount }} "
+      rowSpan="3"
+    ></Label>
+    <label text="" row="4" col="0"></label>
+  </GridLayout>
+  <GridLayout row="0" col="1" rows="*,*,*" cols="30" class="list-button">
+    <Label text=" " row="0" col="0"></Label>
+    <Label text="&#xf054;" row="1" col="0" class="fa arrow-button"></Label>
+    <Label text=" " row="2" col="0"></Label>
+  </GridLayout>
+</GridLayout>
