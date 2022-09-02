@@ -46,6 +46,22 @@
           ></label>
           <label text="" row="2" col="0"></label>
         </StackLayout>
+        <ListView *ngIf="cases.length > 0" row="2" col="0" [items]="cases">
+          <ng-template
+            let-caseItem="item"
+            let-i="index"
+            let-odd="odd"
+            let-even="even"
+          >
+            <StackLayout
+              class="claim-item"
+              [class.odd]="odd"
+              [class.even]="even"
+            >
+              <Label text="case 1"></Label>
+            </StackLayout>
+          </ng-template>
+        </ListView>
       </GridLayout>
     </StackLayout>
   </DockLayout>
