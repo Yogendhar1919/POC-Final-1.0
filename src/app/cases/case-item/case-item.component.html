@@ -1,0 +1,58 @@
+<GridLayout rows="*" columns="*,30" class="claim-item">
+  <GridLayout row="0" col="0" rows="8,auto,auto,6" columns="40, *,45">
+    <label text="" row="0" col="0"></label>
+    <label
+      class="claim-policy-number"
+      text="{{ Case.CropYear }}-{{ Case.PolicyNumber }}"
+      row="1"
+      col="0"
+      colSpan="2"
+      (onTap)="onPolicyTab(Case)"
+    ></label>
+    <!-- <label *ngIf="getClaimHasPhotosImage() !== ' '" row="1" col="3" text="&#xf0c5;" class="fa" verticalAlignment="top" (onTap)="onCompanionTab()"></label> -->
+    <label
+      row="2"
+      col="0"
+      text="&#xf05a;"
+      class="fa"
+      verticalAlignment="top"
+      (onTap)="onContactTab(Case)"
+    ></label>
+    <StackLayout row="2" col="1">
+      <label
+        *ngIf="Case.PolicyHolder"
+        text="{{ getInsuredName() }}"
+        row="1"
+        col="0"
+        (onTap)="onPolicyTab(Case)"
+      ></label>
+      <label
+        text="{{ Case.Agency.Name }}"
+        row="2"
+        col="0"
+        colSpan="2"
+        (onTap)="onPolicyTab(Case)"
+      ></label>
+    </StackLayout>
+    <label
+      row="2"
+      col="2"
+      text="{{ getClaimHasPhotosImage() }}"
+      class="fa"
+      verticalAlignment="top"
+      (onTap)="onPolicyTab(Case)"
+    ></label>
+    <label text="" row="3" col="0"></label>
+  </GridLayout>
+  <GridLayout row="0" col="1" rows="*,*,*" cols="30" class="list-button">
+    <Label text=" " row="0" col="0" (onTap)="onPolicyTab(Case)"></Label>
+    <Label
+      text="&#xf054;"
+      row="1"
+      col="0"
+      class="fa arrow-button"
+      (onTap)="onPolicyTab(Case)"
+    ></Label>
+    <Label text=" " row="2" col="0" (onTap)="onPolicyTab(Case)"></Label>
+  </GridLayout>
+</GridLayout>

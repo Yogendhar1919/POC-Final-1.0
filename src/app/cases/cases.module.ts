@@ -5,6 +5,7 @@ import {
 } from '@nativescript/angular';
 
 import { CasesListComponent } from './cases-list.component';
+import { CaseItemComponent } from './case-item/case-item.component';
 import { CasesRoutingModule } from './cases-routing.module';
 
 @NgModule({
@@ -13,7 +14,7 @@ import { CasesRoutingModule } from './cases-routing.module';
     NativeScriptCommonModule,
     NativeScriptFormsModule,
   ],
-  declarations: [CasesListComponent],
+  declarations: [CasesListComponent, CaseItemComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
 })
