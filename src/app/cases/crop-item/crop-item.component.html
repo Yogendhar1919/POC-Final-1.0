@@ -1,0 +1,25 @@
+<GridLayout rows="auto" columns="*,30" class="crop-item">
+  <GridLayout rows="*,*,*" columns="*,20,30" row="0" col="0">
+    <Label row="0" col="0" text=" "></Label>
+    <Label
+      row="1"
+      col="0"
+      text="{{ crop.CountyName }} / {{ crop.CropAbbr }}"
+    ></Label>
+    <Label
+      row="1"
+      col="1"
+      *ngIf="hasPhoto"
+      text="{{ photoCount }}"
+      class="fa"
+    ></Label>
+    <Label row="1" col="2" *ngIf="hasPhoto" text="&#xf03e;" class="fa"></Label>
+
+    <Label row="2" col="0" text=" "></Label>
+  </GridLayout>
+  <GridLayout row="0" col="1" rows="*,*,*" cols="30" class="list-button">
+    <Label text=" " row="0" col="0"></Label>
+    <Label text="&#xf054;" row="1" col="0" class="fa arrow-button"></Label>
+    <Label text=" " row="2" col="0"></Label>
+  </GridLayout>
+</GridLayout>

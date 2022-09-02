@@ -19,6 +19,12 @@
         [class.even]="even"
         (onTap)="onItemTap(cropItem)"
       >
+        <cropItem
+          *ngIf="!isCropDefault(cropItem.CropID, cropItem.CountyID)"
+          [crop]="cropItem"
+          [hasPhotos]="hasPhotos(cropItem.CropID, cropItem.CountyID)"
+          [photoCount]="getPhotoCount(cropItem.CropID, cropItem.CountyID)"
+        ></cropItem>
       </StackLayout>
     </ng-template>
   </ListView>

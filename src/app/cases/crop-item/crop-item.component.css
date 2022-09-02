@@ -1,0 +1,8 @@
+/* Add mobile styles for the component here.  */
+.crop-item {
+  background-color: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4;
+  padding-right: 4;
+}
