@@ -8,6 +8,7 @@ import { CasesListComponent } from './cases-list.component';
 import { CaseItemComponent } from './case-item/case-item.component';
 import { CasesRoutingModule } from './cases-routing.module';
 import { CropListComponent } from './crop-list/crop-list.component';
+import { ARLineListComponent } from './arline-list/arline-list.component';
 import { CropItemComponent } from './crop-item/crop-item.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CropItemComponent } from './crop-item/crop-item.component';
     CaseItemComponent,
     CropListComponent,
     CropItemComponent,
+    ARLineListComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
