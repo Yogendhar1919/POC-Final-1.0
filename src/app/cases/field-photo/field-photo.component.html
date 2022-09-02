@@ -36,7 +36,7 @@
     <StackLayout dock="bottom" row="1" orientation="horizontal" class="nav-bar">
       <button
         disabled="!hasPhotos()"
-        text="&#xf1f8;"
+        text="D"
         class="fa"
         (tap)="delete()"
         [ngClass]="{ 'disable-button': !hasPhotos() }"
@@ -47,7 +47,7 @@
         [ngClass]="{ 'disable-button': !hasPrevious }"
         textWrap="true"
         width="25%"
-        text="&#xf053;"
+        text="<"
         (tap)="previous()"
         class="fa"
       >
@@ -57,7 +57,7 @@
         [ngClass]="{ 'disable-button': !hasNext }"
         textWrap="true"
         width="25%"
-        text="&#xf054;"
+        text=">"
         (tap)="next()"
         class="fa"
       >
@@ -67,7 +67,7 @@
         [ngClass]="{ 'disable-button': cameraInUse }"
         textWrap="true"
         width="25%"
-        text="&#xf030;"
+        text="C"
         (tap)="takePicture()"
         class="fa"
       ></Button>
