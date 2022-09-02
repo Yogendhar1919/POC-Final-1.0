@@ -1,0 +1,21 @@
+<GridLayout rows="auto,auto,auto" columns="*" class="photo-comment">
+  <Label row="0" col="0" text="{{ commentLabel }}" textWrap="true"></Label>
+  <TextView
+    #comments
+    row="1"
+    col="0"
+    (textChange)="onChange($event)"
+    maxLength="250"
+    height="120"
+    hint="{{ commentPrompt }}"
+    class="input input-border"
+  ></TextView>
+  <Label
+    row="2"
+    col="0"
+    class="comment-length"
+    width="180"
+    text="{{ commentLength }} of 250 characters"
+    horizontalAlignment="right"
+  ></Label>
+</GridLayout>

@@ -53,7 +53,7 @@ export class ARLineListComponent implements OnInit {
   onItemTap(arline: CropARLine): void {
     this.routerExtensions.navigate(
       [
-        '/claims/field-photo/',
+        '/cases/field-photo/',
         arline.Case.CaseId,
         arline.PolicyCropID,
         arline.ARLineID,

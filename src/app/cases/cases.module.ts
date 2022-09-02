@@ -11,6 +11,9 @@ import { CropListComponent } from './crop-list/crop-list.component';
 import { ARLineListComponent } from './arline-list/arline-list.component';
 import { CropItemComponent } from './crop-item/crop-item.component';
 import { ARLineItemComponent } from './arline-item/arline-item.component';
+import { FieldPhotosComponent } from './field-photo/field-photo.component';
+import { PolicyHeaderComponent } from './policy-header/policy-header.component';
+import { PhotoCommentComponent } from './photo-comment/photo-comment.component';
 
 @NgModule({
   imports: [
@@ -24,6 +27,10 @@ import { ARLineItemComponent } from './arline-item/arline-item.component';
     CropListComponent,
     CropItemComponent,
     ARLineListComponent,
+    ARLineItemComponent,
+    PolicyHeaderComponent,
+    PhotoCommentComponent,
+    FieldPhotosComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

@@ -1,0 +1,22 @@
+.policy-header {
+  padding-top: 8;
+  padding-bottom: 8;
+  padding-left: 12;
+  padding-right: 8;
+  font-weight: bold;
+  font-size: 15;
+  border-bottom-width: 1;
+  border-bottom-color: #d3d2d5;
+  vertical-align: middle;
+  background-color: white;
+  /*background-color: rgb(219, 252, 213);*/
+}
+
+.policy-header .fa {
+  padding-top: 8;
+  padding-bottom: 8;
+  padding-left: 8;
+  padding-right: 8;
+  font-size: 22;
+  text-align: right;
+}

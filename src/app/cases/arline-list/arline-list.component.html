@@ -19,6 +19,25 @@
         [class.even]="even"
         (onTap)="onItemTap(cropARLineItem)"
       >
+        <ARLineItem
+          *ngIf="!cropARLineItem.isDefaultLine()"
+          [crop-arLine]="cropARLineItem"
+          [hasPhotos]="
+            hasPhoto(
+              cropARLineItem.CropID,
+              cropARLineItem.ARLineID,
+              cropARLineItem.CountyId
+            )
+          "
+          [photoCount]="
+            getPhotoCount(
+              cropARLineItem.CropID,
+              cropARLineItem.ARLineID,
+              cropARLineItem.CountyId
+            )
+          "
+        >
+        </ARLineItem>
         <GridLayout
           *ngIf="cropARLineItem.isDefaultLine()"
           rows="*,*,*"

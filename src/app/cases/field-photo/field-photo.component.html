@@ -1,0 +1,33 @@
+<ActionBar
+  class="action-bar"
+  title="{{ editComments ? 'Photo Info' : 'Photos' }}"
+>
+  <NavigationButton visibility="hidden"></NavigationButton>
+  <ActionItem #backButton *ngIf="!editComments && !addComments" (tap)="close()">
+    <GridLayout rows="*" columns="auto,auto">
+      <Label
+        row="0"
+        col="0"
+        class="fa"
+        text="&#xf104; "
+        horizontalAlignment="left"
+      ></Label>
+      <Label row="0" col="1" text="Back" horizontalAlignment="left"></Label>
+    </GridLayout>
+  </ActionItem>
+
+  <ActionItem
+    *ngIf="editComments || addComments"
+    (tap)="editCommentCompleted()"
+    ios.position="right"
+    android.position="actionBar"
+  >
+    <StackLayout>
+      <Label
+        class="action-bar-button"
+        text="SAVE"
+        horizontalAlignment="right"
+      ></Label>
+    </StackLayout>
+  </ActionItem>
+</ActionBar>

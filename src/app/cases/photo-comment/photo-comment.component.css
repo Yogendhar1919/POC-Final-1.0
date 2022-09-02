@@ -1,0 +1,21 @@
+.photo-comment {
+  margin-left: 6;
+  margin-right: 6;
+  margin-top: 6;
+  font-size: 15;
+}
+
+.photo-comment Label {
+  margin: 4;
+  font-size: 15;
+}
+
+.photo-comment .comment-length {
+  color: gray;
+  width: 100%;
+  text-align: right;
+}
+
+.photo-comment TextView {
+  padding: 6;
+}
