@@ -25,8 +25,13 @@ import {
   Frame,
 } from '@nativescript/core';
 import { PhotoCommentComponent } from '../photo-comment/photo-comment.component';
-import { Case } from '../shared/cases.model';
-import { CropARLine, CropARLinePhoto } from '../shared/crop-arline.model';
+import { Case, CaseMock } from '../shared/cases.model';
+import {
+  CropARLine,
+  CropARLinePhoto,
+  mockCropARLinePhoto,
+  mockCropARLine,
+} from '../shared/crop-arline.model';
 import { PhotoLocation } from '../shared/field-photo.model';
 import { ImageProvider } from '../shared/image.provider';
 import { PhotoService } from '../shared/photo.service';
@@ -57,7 +62,7 @@ export enum screenOrientationMode {
   styleUrls: ['./field-photo.component.css'],
 })
 export class FieldPhotosComponent implements OnInit {
-  claim: Claim;
+  case: Case;
   arLine: CropARLine;
   currentPhoto: CropARLinePhoto;
   photos: CropARLinePhoto[];
@@ -99,7 +104,6 @@ export class FieldPhotosComponent implements OnInit {
     private claimsFileSystemService: ClaimsFileSystemService,
     private routerExtensions: RouterExtensions,
     private applicationRef: ApplicationRef,
-    private logger: Logger,
     private page: Page,
     private imageProvider: ImageProvider,
     private locationService: LocationService,
@@ -113,28 +117,15 @@ export class FieldPhotosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.photos = new Array<CropARLinePhoto>();
-    this.route.data
-      .pipe(takeUntil(this._ngUnsubscribe))
-      .subscribe(
-        (data: {
-          arlines: CropARLine[];
-          arlinePhotos: CropARLinePhoto[];
-          claimForSelectedCrop: Claim;
-        }) => {
-          this.arLine = data.arlines[0];
-          this.photos = data.arlinePhotos;
-          this.policyId = data.claimForSelectedCrop.PolicyId;
-          this.policyPublisherId = data.claimForSelectedCrop.PolicyPublisherId;
-          this.currentPhoto = new CropARLinePhoto();
-          if (this.hasPhotos() && this.currentPhoto.Id === undefined)
-            this.currentPhoto = this.photos[0];
-          this.hasNext = this.photoCount() >= 2;
-        }
-      );
-
+    this.arLine = mockCropARLine[0];
+    this.photos = mockCropARLinePhoto;
+    this.policyId = CaseMock[0].PolicyId;
+    this.policyPublisherId = CaseMock[0].PolicyPublisherId;
+    this.currentPhoto = new CropARLinePhoto();
+    if (this.hasPhotos() && this.currentPhoto.Id === undefined) {
+      this.currentPhoto = this.photos[0];
+      this.hasNext = this.photoCount() >= 2;
+    }
     this.currentPhotoPath = '';
   }
   @HostListener('unloaded')
@@ -257,7 +248,6 @@ export class FieldPhotosComponent implements OnInit {
             this.currentPhotoPath = '';
           }
         } catch (e) {
-          this.logger.error(JSON.stringify(e));
           this.alertDeleteFailed();
         }
       }
@@ -334,7 +324,6 @@ export class FieldPhotosComponent implements OnInit {
       })
       .catch((error) => {
         this.hideComment();
-        this.logger.log(error);
         Dialogs.alert({
           title: 'Image Save Error',
           message: error.message,
@@ -405,7 +394,6 @@ export class FieldPhotosComponent implements OnInit {
           )
           .then((picture) => {
             this.imageProvider.current = picture;
-            this.logger.log('Photo captured.');
 
             // if you need image source
             const folder: fs.Folder = fs.knownFolders.documents();
@@ -807,7 +795,7 @@ export class FieldPhotosComponent implements OnInit {
         this.arLine.Acres !== undefined ? this.arLine.Acres : '0';
       this.photoService.saveARLinePhotoMetadata(this.currentPhoto);
       this.photoService
-        .loadClaimARLinePhotos(this.arLine.Claim.ClaimId, this.arLine.ARLineID)
+        .loadClaimARLinePhotos(this.arLine.Case.CaseId, this.arLine.ARLineID)
         .pipe(takeUntil(this._ngUnsubscribe))
         .subscribe((x) => {
           this.photos = x;

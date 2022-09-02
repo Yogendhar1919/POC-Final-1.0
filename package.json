@@ -13,15 +13,16 @@
     "@angular/platform-browser-dynamic": "~14.2.0",
     "@angular/router": "~14.2.0",
     "@nativescript/angular": "~14.2.0",
-    "@nativescript/core": "~8.3.0",
     "@nativescript/camera": "5.0.10",
+    "@nativescript/core": "~8.3.0",
     "@nativescript/email": "2.0.5",
     "@nativescript/geolocation": "8.0.2",
+    "@nativescript/theme": "~3.0.2",
     "nativescript-phone": "3.0.3",
     "nativescript-screen-orientation": "^2.0.0",
-    "@nativescript/theme": "~3.0.2",
     "rxjs": "~7.5.0",
-    "zone.js": "~0.11.5"
+    "zone.js": "~0.11.5",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~14.2.0",
