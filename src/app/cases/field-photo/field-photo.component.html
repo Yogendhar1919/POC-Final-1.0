@@ -1,9 +1,9 @@
 <ActionBar
   class="action-bar"
-  title="{{ editComments ? 'Photo Info' : 'Photos yooo' }}"
+  title="{{ editComments ? 'Photo Info' : 'Photos' }}"
 >
   <NavigationButton visibility="hidden"></NavigationButton>
-  <ActionItem #backButton *ngIf="!editComments && !addComments" (tap)="close()">
+  <ActionItem *ngIf="!editComments && !addComments" (tap)="close()">
     <GridLayout rows="*" columns="auto,auto">
       <Label
         row="0"
