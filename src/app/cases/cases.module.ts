@@ -15,6 +15,11 @@ import { FieldPhotosComponent } from './field-photo/field-photo.component';
 import { PolicyHeaderComponent } from './policy-header/policy-header.component';
 import { PhotoCommentComponent } from './photo-comment/photo-comment.component';
 
+import { PhotoService } from './shared/photo.service';
+import { LocationService } from './shared/location.service';
+import { ClaimsFileSystemService } from './shared/claims-filesystem.service';
+import { ImageProvider } from './shared/image.provider';
+
 @NgModule({
   imports: [
     CasesRoutingModule,
@@ -32,7 +37,12 @@ import { PhotoCommentComponent } from './photo-comment/photo-comment.component';
     PhotoCommentComponent,
     FieldPhotosComponent,
   ],
-  providers: [],
+  providers: [
+    PhotoService,
+    LocationService,
+    ClaimsFileSystemService,
+    ImageProvider,
+  ],
   schemas: [NO_ERRORS_SCHEMA],
 })
 export class CasesModule {}

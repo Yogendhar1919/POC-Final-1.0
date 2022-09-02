@@ -6,11 +6,11 @@ import { LocationService } from './location.service';
 import {
   CropARLine,
   CropARLinePhoto,
-  ClaimPhotoWrapper,
+  CasePhotoWrapper,
+  mockphotowrapper
 } from './crop-arline.model';
 import { PhotoLocation } from './field-photo.model';
 import { ClaimsFileSystemService } from './claims-filesystem.service';
-import { CouchbaseService } from '../../shared/couchbase.service';
 import { Observable, of } from 'rxjs';
 import { Path } from './path';
 
@@ -21,30 +21,17 @@ export class PhotoService {
 
   constructor(
     private filesystemService: ClaimsFileSystemService,
-    private locationService: LocationService,
-    private couchbaseService: CouchbaseService,
-    private logger: Logger
+    private locationService: LocationService
   ) {
     this.photos = new Array<CropARLinePhoto>();
   }
 
   hasClaimPhotos(claimid: number): boolean {
-    const db: Couchbase = this.couchbaseService.getPhotoDb();
-    let wrapper: ClaimPhotoWrapper = this.getClaimPhotoWrapper(
-      ClaimPhotoWrapper.formatKey(claimid)
-    );
-    return wrapper === null ? false : wrapper.CropARLinePhotos.length > 0;
+    return true;
   }
 
   getCropARPhotoCount(claimid: number, arlineid: number): number {
-    const db: Couchbase = this.couchbaseService.getPhotoDb();
-    let wrapper: ClaimPhotoWrapper = this.getClaimPhotoWrapper(
-      ClaimPhotoWrapper.formatKey(claimid)
-    );
-    return wrapper === null
-      ? 0
-      : wrapper.CropARLinePhotos.filter((photo) => photo.ARLineId === +arlineid)
-          .length;
+    return 1;
   }
 
   getPhotos(claimId: number): Observable<ClaimPhotoWrapper> {
@@ -117,7 +104,7 @@ export class PhotoService {
   ): Promise<CropARLinePhoto> {
     return new Promise((resolve, reject) => {
       let arLinePhoto: CropARLinePhoto = this.createCropARLinePhoto(
-        cropARLine.Claim.ClaimId,
+        cropARLine.Case.CaseId,
         cropARLine.PolicyCropID,
         cropARLine.CropID,
         cropARLine.ARLineID,
@@ -146,8 +133,8 @@ export class PhotoService {
       let source = ImageSource.fromFileSync(imageFile);
       try {
         let fileName: string = this.filesystemService.getFileName(
-          cropARLine.Claim.CropYear,
-          cropARLine.Claim.PolicyNumber,
+          cropARLine.Case.CropYear,
+          cropARLine.Case.PolicyNumber,
           cropARLine.UnitNumber,
           cropARLine.FarmNumber,
           arLinePhoto.Id
@@ -155,15 +142,13 @@ export class PhotoService {
 
         let newFile = Path.fromPath(
           this.filesystemService.getClaimARlinePhotoPath(
-            cropARLine.Claim.ClaimId,
+            cropARLine.Case.CaseId,
             cropARLine.ARLineID
           ),
           `${fileName}.${this.photoType}`
         );
-        this.logger.log('Saving file ' + newFile);
 
         if (source.saveToFile(newFile.path, 'jpeg')) {
-          this.logger.log('Saved file ' + newFile);
           arLinePhoto.File = {
             directory: newFile.base,
             relativePath: newFile.relativePath,
@@ -197,20 +182,11 @@ export class PhotoService {
           let previewFileName = this.filesystemService.getPreviewFile(
             this.generateUUID()
           );
-          this.logger.log('Moving to preview');
 
           if (imageAccessSource.saveToFile(previewFileName.path, 'jpeg')) {
-            this.logger.log('Saved file ' + previewFileName);
-            if (imageAsset.android) {
-              this.logger.log('Removing Image android ' + imageAsset.android);
-              let assetFile: fs.File = fs.File.fromPath(imageAsset.android);
-              assetFile.remove();
-              this.logger.log('Removed Image Android ' + imageAsset.android);
-            } else if (imageAsset.ios) {
-              this.logger.log('Removing Image IOS ' + imageAsset.ios);
+            if (imageAsset.ios) {
               let assetFile: fs.File = fs.File.fromPath(imageAsset.ios);
               assetFile.remove();
-              this.logger.log('Removed Image IOS ' + imageAsset.ios);
             }
 
             resolve(previewFileName);
@@ -224,23 +200,7 @@ export class PhotoService {
     });
   }
 
-  saveARLinePhotoMetadata(cropARLinePhoto: CropARLinePhoto): void {
-    const db: Couchbase = this.couchbaseService.getPhotoDb();
-    let wrapper: ClaimPhotoWrapper = this.getClaimPhotoWrapper(
-      cropARLinePhoto.claimKey()
-    );
-    if (wrapper === null) {
-      const wrapper: ClaimPhotoWrapper = new ClaimPhotoWrapper();
-      wrapper.ClaimId = cropARLinePhoto.ClaimId;
-      wrapper.PolicyId = cropARLinePhoto.PolicyId;
-      wrapper.PolicyPublisherId = cropARLinePhoto.PolicyPublisherId;
-      wrapper.CropARLinePhotos.push(cropARLinePhoto);
-      db.createDocument(wrapper, wrapper.key());
-    } else {
-      wrapper.addOrReplace(cropARLinePhoto);
-      db.updateDocument(wrapper.key(), wrapper);
-    }
-  }
+  saveARLinePhotoMetadata(cropARLinePhoto: CropARLinePhoto): void {}
 
   getCropARPhoto(photoId: string): CropARLinePhoto {
     let foundPhotos: CropARLinePhoto[] = this.photos.filter(
@@ -253,33 +213,7 @@ export class PhotoService {
   }
 
   deletePhoto(selectedPhotoToDelete: CropARLinePhoto): boolean {
-    const db: Couchbase = this.couchbaseService.getPhotoDb();
-    let wrapper: ClaimPhotoWrapper = this.getClaimPhotoWrapper(
-      selectedPhotoToDelete.claimKey()
-    );
-    const deletePhoto = wrapper.CropARLinePhotos.find(
-      (x) => x.Id === selectedPhotoToDelete.Id
-    );
-    let flag = true;
-
-    if (wrapper !== null) {
-      wrapper.deletePhoto(deletePhoto);
-      db.updateDocument(wrapper.key(), wrapper);
-    }
-
-    // cropARLinePhoto.File.directory values are 'tmp' | 'directory' | 'app
-    let photoFile = Path.fromPath(
-      this.filesystemService.getClaimARlinePhotoPath(
-        deletePhoto.ClaimId,
-        deletePhoto.ARLineId
-      ),
-      `${deletePhoto.FileName}.jpeg`
-    );
-    photoFile.file.removeSync(() => {
-      flag = false;
-    });
-
-    return flag;
+    return true;
   }
 
   private cleanUpFolders(folder: fs.Folder, deleteParent: boolean): void {
@@ -292,7 +226,7 @@ export class PhotoService {
   }
 
   private createCropARLinePhoto(
-    claimId: number,
+    caseId: number,
     policyCropId,
     cropId: number,
     arLineId: number,
@@ -302,7 +236,7 @@ export class PhotoService {
     var arLinePhoto: CropARLinePhoto = new CropARLinePhoto();
     arLinePhoto.Id = this.generateUUID();
     arLinePhoto.ARLineId = arLineId;
-    arLinePhoto.ClaimId = claimId;
+    arLinePhoto.CaseId = caseId;
     arLinePhoto.CropId = cropId;
     arLinePhoto.PolicyCropId = policyCropId;
     arLinePhoto.Comments = '';
@@ -327,13 +261,7 @@ export class PhotoService {
     return uuid;
   }
 
-  private getClaimPhotoWrapper(key: string): ClaimPhotoWrapper {
-    const db: Couchbase = this.couchbaseService.getPhotoDb();
-    let wrapper: ClaimPhotoWrapper = db.getDocument(key);
-    if (wrapper !== null) {
-      // objects from db will only have the data
-      wrapper = ClaimPhotoWrapper.createFrom(wrapper);
-    }
-    return wrapper;
+  private getClaimPhotoWrapper(key: string): CasePhotoWrapper {
+    return mockphotowrapper[0];
   }
 }

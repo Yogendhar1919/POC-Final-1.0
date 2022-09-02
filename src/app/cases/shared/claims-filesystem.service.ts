@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Logger } from '../../shared/default-logger.service';
 import { FileSystemService } from '../../shared/filesystem.service';
 import { Path } from './path';
 
 @Injectable()
 export class ClaimsFileSystemService extends FileSystemService {
-  constructor(logger: Logger) {
-    super(logger);
+  constructor() {
   }
 
-  getClaimBasePath(claimid: number): Path {
-    return Path.fromPath(this.getPhotosPath(), `claim-${claimid}/`);
+  getClaimBasePath(caseId: number): Path {
+    return Path.fromPath(this.getPhotosPath(), `case-${caseId}/`);
   }
 
-  getClaimARlinePhotoPath(claimid: number, arlineid: number): Path {
+  getClaimARlinePhotoPath(caseId: number, arlineid: number): Path {
     let basePath = Path.fromPath(
-      this.getClaimBasePath(claimid),
+      this.getClaimBasePath(caseId),
       `arline-${arlineid}/`
     );
     basePath.createDirs();

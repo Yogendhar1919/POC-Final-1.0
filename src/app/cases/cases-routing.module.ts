@@ -4,6 +4,8 @@ import { NativeScriptRouterModule } from '@nativescript/angular';
 import { CasesListComponent } from './cases-list.component';
 import { CropListComponent } from './crop-list/crop-list.component';
 import { ARLineListComponent } from './arline-list/arline-list.component';
+import { FieldPhotosComponent } from './field-photo/field-photo.component';
+import { PhotoCommentComponent } from './photo-comment/photo-comment.component';
 
 const routes: Routes = [
   { path: '', component: CasesListComponent },
@@ -14,6 +16,14 @@ const routes: Routes = [
   {
     path: 'arline-list/:claimId/:policyCropId/:cropId/:countyId',
     component: ARLineListComponent,
+  },
+  {
+    path: 'field-photo/:claimId/:policyCropId/:arlineId/:cropId/:countyId',
+    component: FieldPhotosComponent,
+  },
+  {
+    path: 'photo-comment/:claimid/:arlineid/:photoid',
+    component: PhotoCommentComponent,
   },
 ];
 
