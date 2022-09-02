@@ -6,6 +6,10 @@
   color: #053c91;
 }
 
+.bg {
+  background-color: white;
+}
+
 .nav-bar {
   background-color: lightgray;
   border-width: 1;

@@ -1,7 +1,7 @@
 <ActionBar class="action-bar" title="POC">
   <NavigationButton visibility="collapsed"></NavigationButton>
 </ActionBar>
-<StackLayout>
+<StackLayout class="bg">
   <DockLayout stretchLastChild="true">
     <DockLayout dock="bottom" class="nav-bar" stretchLastChild="false">
       <Button
@@ -22,7 +22,7 @@
     </DockLayout>
     <StackLayout dock="top" row="0">
       <GridLayout rows="auto,auto,*" col="*" class="claim-list">
-        <StackLayout row="0" col="0"> </StackLayout>
+        <!-- <StackLayout row="0" col="0"> </StackLayout> -->
         <Label
           *ngIf="cases.length > 0"
           class="policy-count"
@@ -46,7 +46,13 @@
           ></label>
           <label text="" row="2" col="0"></label>
         </StackLayout>
-        <ListView *ngIf="cases.length > 0" row="2" col="0" [items]="cases">
+        <ListView
+          class="bg"
+          *ngIf="cases.length > 0"
+          row="2"
+          col="0"
+          [items]="cases"
+        >
           <ng-template
             let-caseItem="item"
             let-i="index"
