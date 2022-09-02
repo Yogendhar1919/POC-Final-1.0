@@ -39,7 +39,6 @@ import { LocationService } from '../shared/location.service';
 import * as camera from '@nativescript/camera';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import * as _ from 'lodash';
 import { ImageSource, Screen } from '@nativescript/core';
 import { Path } from '../shared/path';
 import { ClaimsFileSystemService } from '../shared/claims-filesystem.service';
@@ -284,11 +283,7 @@ export class FieldPhotosComponent implements OnInit {
   }
 
   currentIndex(): number {
-    if (!this.hasPhotos()) return 0;
-    const index = _.findIndex(this.photos, (x) => {
-      return x.Id === this.currentPhoto.Id;
-    });
-    return index;
+    return 1;
   }
 
   get currentPhotoPath() {
