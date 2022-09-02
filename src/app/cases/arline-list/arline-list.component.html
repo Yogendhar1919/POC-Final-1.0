@@ -8,10 +8,10 @@
 <GridLayout rows="auto,*" class="arline-list">
   <PolicyHeader
     row="0"
-    [cropYear]="arLine.Case.CropYear"
-    [policyNumber]="arLine.Case.PolicyNumber"
-    [county]="arLine.CountyName"
-    [case]="arLine.Case"
+    [cropYear]="case.CropYear"
+    [policyNumber]="case.PolicyNumber"
+    [county]="case.CountyName"
+    [case]="case"
   ></PolicyHeader>
   <ListView row="1" [items]="arlineItems">
     <ng-template
