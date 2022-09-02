@@ -2,8 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 import { CasesListComponent } from './cases-list.component';
+import { CropListComponent } from './crop-list/crop-list.component';
 
-const routes: Routes = [{ path: '', component: CasesListComponent }];
+const routes: Routes = [
+  { path: '', component: CasesListComponent },
+  {
+    path: 'crop-list/:caseId',
+    component: CropListComponent,
+  },
+];
 
 @NgModule({
   imports: [NativeScriptRouterModule.forChild(routes)],

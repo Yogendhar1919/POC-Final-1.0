@@ -36,7 +36,7 @@ export class CaseItemComponent {
   }
 
   onPolicyTab(caseData: Case): void {
-    this.routerExtensions.navigate(['/claims/crop-list/', caseData.CaseId], {
+    this.routerExtensions.navigate(['/cases/crop-list/', caseData.CaseId], {
       animated: true,
       transition: {
         name: 'slide',

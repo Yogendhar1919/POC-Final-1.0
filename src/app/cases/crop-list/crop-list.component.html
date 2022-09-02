@@ -1,0 +1,25 @@
+<ActionBar class="action-bar" title="Policy {{ case.PolicyNumber }}">
+  <NavigationButton
+    text="Back"
+    android.systemIcon="ic_menu_back"
+    (tap)="close()"
+  ></NavigationButton>
+</ActionBar>
+<GridLayout rows="auto,*" class="arline-list">
+  <ListView row="1" [items]="cropItems">
+    <ng-template
+      let-cropItem="item"
+      let-i="index"
+      let-odd="odd"
+      let-even="even"
+    >
+      <StackLayout
+        class="crop-item"
+        [class.odd]="odd"
+        [class.even]="even"
+        (onTap)="onItemTap(cropItem)"
+      >
+      </StackLayout>
+    </ng-template>
+  </ListView>
+</GridLayout>

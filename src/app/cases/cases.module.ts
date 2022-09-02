@@ -7,6 +7,7 @@ import {
 import { CasesListComponent } from './cases-list.component';
 import { CaseItemComponent } from './case-item/case-item.component';
 import { CasesRoutingModule } from './cases-routing.module';
+import { CropListComponent } from './crop-list/crop-list.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { CasesRoutingModule } from './cases-routing.module';
     NativeScriptCommonModule,
     NativeScriptFormsModule,
   ],
-  declarations: [CasesListComponent, CaseItemComponent],
+  declarations: [CasesListComponent, CaseItemComponent, CropListComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
 })
