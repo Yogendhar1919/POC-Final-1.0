@@ -19,3 +19,7 @@
 .photo-comment TextView {
   padding: 6;
 }
+
+.bg {
+  background-color: white;
+}
