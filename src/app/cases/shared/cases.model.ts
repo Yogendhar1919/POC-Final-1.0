@@ -194,7 +194,7 @@ export const CaseMock = [
             Type: '016',
           },
           {
-            PolicyCropLineID: 100,
+            PolicyCropLineID: 101,
             UnitRowID: '2',
             UnitNumber: '0002-0002 OU',
             ARLineID: 36295996,
@@ -203,8 +203,8 @@ export const CaseMock = [
             FarmNumber: '4792',
             Practice: '3',
             SectionTownshipRange: '32-002S-007W',
-            Share: '0.5432',
-            Type: '016',
+            Share: '0.5433',
+            Type: '017',
           },
         ],
         NOLs: [
