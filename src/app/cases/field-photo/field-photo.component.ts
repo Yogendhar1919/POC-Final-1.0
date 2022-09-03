@@ -121,24 +121,11 @@ export class FieldPhotosComponent implements OnInit {
     this.policyId = CaseMock[0].PolicyId;
     this.policyPublisherId = CaseMock[0].PolicyPublisherId;
     this.currentPhoto = new CropARLinePhoto();
-    if (
-      this.hasPhotos() &&
-      (this.currentPhoto.Id === undefined || this.currentPhoto.Id === null)
-    ) {
+    if (this.hasPhotos() && this.currentPhoto.Id === undefined) {
       this.currentPhoto = this.photos[0];
       this.hasNext = this.photoCount() >= 2;
-      console.log('in loop');
     }
     this.currentPhotoPath = '';
-  }
-  @HostListener('unloaded')
-  ngOnDestroy() {
-    this._ngUnsubscribe.next();
-    this._ngUnsubscribe.complete();
-    this.photos = null;
-    this.locationService.stopWatchingLocation();
-    this.locationService.stopUpdatingHeading();
-    this.locationService.stopUpdatingLocation();
   }
 
   private getScreenOrientationMode(): screenOrientationMode {
@@ -640,7 +627,6 @@ export class FieldPhotosComponent implements OnInit {
       })
       .catch((error) => {
         this.cameraInUse = false;
-        console.log(error);
         Dialogs.alert({
           title: 'Bad Direction',
           message:
@@ -939,5 +925,15 @@ export class FieldPhotosComponent implements OnInit {
     let directionText: string =
       this.locationService.convertDegreesToDirectionText(direction);
     return directionText;
+  }
+
+  @HostListener('unloaded')
+  ngOnDestroy() {
+    this._ngUnsubscribe.next();
+    this._ngUnsubscribe.complete();
+    this.photos = null;
+    this.locationService.stopWatchingLocation();
+    this.locationService.stopUpdatingHeading();
+    this.locationService.stopUpdatingLocation();
   }
 }

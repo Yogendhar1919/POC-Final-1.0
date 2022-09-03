@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import {
   CasePhotoWrapper,
   mockCropARLinePhoto,
+  mockphotowrapper,
 } from '../shared/crop-arline.model';
 import { Case, Crop, CaseMock } from '../shared/cases.model';
 import { RouterExtensions } from '@nativescript/angular';
@@ -31,9 +32,8 @@ export class CropListComponent implements OnInit {
   @HostListener('loaded')
   ngOnInit() {
     this.cropItems = CaseMock[0].Crops;
-    console.log(this.cropItems);
     this.case = CaseMock[0];
-    //this.photos = mockCropARLinePhoto[0];
+    this.photos = mockphotowrapper[0];
   }
   @HostListener('unloaded')
   ngOnDestroy(): void {

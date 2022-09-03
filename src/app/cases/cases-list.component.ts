@@ -14,7 +14,6 @@ export class CasesListComponent implements OnInit, AfterViewInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('welcome to cases componentssss');
   }
 
   ngAfterViewInit(): void {

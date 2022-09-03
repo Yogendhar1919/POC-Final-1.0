@@ -13,9 +13,5 @@ export class CropItemComponent implements OnInit {
   @Input('photoCount') photoCount: number;
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.crop);
-    console.log(this.hasPhoto);
-    console.log(this.photoCount);
-  }
+  ngOnInit() {}
 }
