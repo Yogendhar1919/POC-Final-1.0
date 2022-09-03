@@ -121,9 +121,13 @@ export class FieldPhotosComponent implements OnInit {
     this.policyId = CaseMock[0].PolicyId;
     this.policyPublisherId = CaseMock[0].PolicyPublisherId;
     this.currentPhoto = new CropARLinePhoto();
-    if (this.hasPhotos() && this.currentPhoto.Id === undefined) {
+    if (
+      this.hasPhotos() &&
+      (this.currentPhoto.Id === undefined || this.currentPhoto.Id === null)
+    ) {
       this.currentPhoto = this.photos[0];
       this.hasNext = this.photoCount() >= 2;
+      console.log('in loop');
     }
     this.currentPhotoPath = '';
   }

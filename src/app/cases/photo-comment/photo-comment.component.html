@@ -1,4 +1,4 @@
-<GridLayout rows="auto,auto,auto" columns="*" class="photo-comment bg">
+<GridLayout rows="auto,auto,auto" columns="*" class="photo-comment">
   <Label row="0" col="0" text="{{ commentLabel }}" textWrap="true"></Label>
   <TextView
     #comments
@@ -8,12 +8,13 @@
     maxLength="250"
     height="120"
     hint="{{ commentPrompt }}"
-    class="input bg input-border"
+    class="input input-border"
+    style.placeholderColor="green"
   ></TextView>
   <Label
     row="2"
     col="0"
-    class="comment-length bg"
+    class="comment-length"
     width="180"
     text="{{ commentLength }} of 250 characters"
     horizontalAlignment="right"
