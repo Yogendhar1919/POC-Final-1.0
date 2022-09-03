@@ -723,10 +723,8 @@ export class FieldPhotosComponent implements OnInit {
   }
 
   private editCommentCompleted(): void {
-    let index: number = this.currentIndex();
     this.currentPhoto.Comments =
       this.photoCommentElement.commentElement.nativeElement.text;
-
     let needsLocations: boolean =
       this.currentPhoto.Latitude === undefined ||
       this.currentPhoto.Latitude === null ||
@@ -787,6 +785,7 @@ export class FieldPhotosComponent implements OnInit {
           this.hasPrevious = this.photos.length > 1;
         });
       this.currentPhoto = this.photos[this.currentIndex()];
+
       this.hideComment();
     }
   }
