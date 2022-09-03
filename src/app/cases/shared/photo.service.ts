@@ -26,17 +26,13 @@ export class PhotoService {
     this.photos = new Array<CropARLinePhoto>();
   }
 
-  hasClaimPhotos(claimid: number): boolean {
-    return true;
-  }
+  // getCropARPhotoCount(claimid: number, arlineid: number): number {
+  //   return 1;
+  // }
 
-  getCropARPhotoCount(claimid: number, arlineid: number): number {
-    return 1;
-  }
-
-  getPhotos(claimId: number): Observable<CasePhotoWrapper> {
-    return of(mockphotowrapper[0]);
-  }
+  // getPhotos(claimId: number): Observable<CasePhotoWrapper> {
+  //   return of(mockphotowrapper[0]);
+  // }
 
   loadClaimARLinePhotos(
     claimid: number,
@@ -173,56 +169,56 @@ export class PhotoService {
     assetFile.remove();
   }
 
-  moveToPreviewImage(imageAsset: ImageAsset): Promise<Path> {
-    return new Promise((resolve, reject) => {
-      let source: ImageSource = new ImageSource();
-      source.fromAsset(imageAsset).then((imageAccessSource) => {
-        try {
-          let previewFileName = this.filesystemService.getPreviewFile(
-            this.generateUUID()
-          );
+  // moveToPreviewImage(imageAsset: ImageAsset): Promise<Path> {
+  //   return new Promise((resolve, reject) => {
+  //     let source: ImageSource = new ImageSource();
+  //     source.fromAsset(imageAsset).then((imageAccessSource) => {
+  //       try {
+  //         let previewFileName = this.filesystemService.getPreviewFile(
+  //           this.generateUUID()
+  //         );
 
-          if (imageAccessSource.saveToFile(previewFileName.path, 'jpeg')) {
-            if (imageAsset.ios) {
-              let assetFile: fs.File = fs.File.fromPath(imageAsset.ios);
-              assetFile.remove();
-            }
+  //         if (imageAccessSource.saveToFile(previewFileName.path, 'jpeg')) {
+  //           if (imageAsset.ios) {
+  //             let assetFile: fs.File = fs.File.fromPath(imageAsset.ios);
+  //             assetFile.remove();
+  //           }
 
-            resolve(previewFileName);
-          } else {
-            reject(new Error('Failed to save image'));
-          }
-        } catch (error) {
-          reject(error);
-        }
-      });
-    });
-  }
+  //           resolve(previewFileName);
+  //         } else {
+  //           reject(new Error('Failed to save image'));
+  //         }
+  //       } catch (error) {
+  //         reject(error);
+  //       }
+  //     });
+  //   });
+  // }
 
   saveARLinePhotoMetadata(cropARLinePhoto: CropARLinePhoto): void {}
 
-  getCropARPhoto(photoId: string): CropARLinePhoto {
-    let foundPhotos: CropARLinePhoto[] = this.photos.filter(
-      (file) => file.Id === photoId
-    );
-    if (foundPhotos.length > 0) {
-      return foundPhotos[0];
-    }
-    return null;
-  }
+  // getCropARPhoto(photoId: string): CropARLinePhoto {
+  //   let foundPhotos: CropARLinePhoto[] = this.photos.filter(
+  //     (file) => file.Id === photoId
+  //   );
+  //   if (foundPhotos.length > 0) {
+  //     return foundPhotos[0];
+  //   }
+  //   return null;
+  // }
 
   deletePhoto(selectedPhotoToDelete: CropARLinePhoto): boolean {
     return true;
   }
 
-  private cleanUpFolders(folder: fs.Folder, deleteParent: boolean): void {
-    folder.getEntities().then((entities) => {
-      if (entities.length === 0) {
-        folder.removeSync();
-        this.cleanUpFolders(folder.parent, false);
-      }
-    });
-  }
+  // private cleanUpFolders(folder: fs.Folder, deleteParent: boolean): void {
+  //   folder.getEntities().then((entities) => {
+  //     if (entities.length === 0) {
+  //       folder.removeSync();
+  //       this.cleanUpFolders(folder.parent, false);
+  //     }
+  //   });
+  // }
 
   private createCropARLinePhoto(
     caseId: number,

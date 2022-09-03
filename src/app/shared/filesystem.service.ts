@@ -41,14 +41,6 @@ export class FileSystemService {
     return new Path('documents', '/data/');
   }
 
-  getConfigFilePath(): string {
-    const path = fs.path.join(
-      fs.knownFolders.currentApp().path,
-      `/app/config/config.json`
-    );
-    return path;
-  }
-
   isJsonFile(fileName: string): boolean {
     return fileName.endsWith('json');
   }

@@ -26,7 +26,6 @@ export class ClaimsFileSystemService extends FileSystemService {
   }
 
   getPhotosPath(): Path {
-    // return fs.path.join(this.getQuestMobilePath(), "photos");
     return Path.fromPath(this.getQuestMobileDocsPath(), 'photos');
   }
 
@@ -39,9 +38,5 @@ export class ClaimsFileSystemService extends FileSystemService {
       this.getQuestMobileDocsPath(),
       `photos/preview${uuid}.jpeg`
     );
-  }
-
-  getPolicyFilePath(): Path {
-    return Path.fromPath(this.getPolicyFileFolder(), '/quest_mobile.json');
   }
 }
