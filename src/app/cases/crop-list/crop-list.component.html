@@ -6,6 +6,13 @@
   ></NavigationButton>
 </ActionBar>
 <GridLayout rows="auto,*" class="arline-list">
+  <PolicyHeader
+    row="0"
+    [cropYear]="case.CropYear"
+    [policyNumber]="case.PolicyNumber"
+    [county]="case.CountyName"
+    [case]="case"
+  ></PolicyHeader>
   <ListView row="1" class="bg" [items]="cropItems">
     <ng-template
       let-cropItem="item"
