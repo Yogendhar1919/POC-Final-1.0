@@ -283,7 +283,7 @@ export class FieldPhotosComponent implements OnInit {
   }
 
   currentIndex(): number {
-    return 1;
+    return 0;
   }
 
   get currentPhotoPath() {
