@@ -964,6 +964,10 @@ export class FieldPhotosComponent implements OnInit {
             this.currentPhoto.Direction
           )
         );
+        this.imageProvider.imageLocation2.direction =
+          this.currentPhoto.Direction;
+        this.imageProvider.imageLocation2.geoLocation.direction =
+          this.currentPhoto.Direction;
         this.saveImage();
       } else {
         setTimeout(() => {
