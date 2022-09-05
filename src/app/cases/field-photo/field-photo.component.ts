@@ -958,6 +958,12 @@ export class FieldPhotosComponent implements OnInit {
       if (directionText !== 'Cancel') {
         this.currentPhoto.Direction =
           this.locationService.convertDirectionTextToDegrees(directionText);
+        console.log(
+          'finally  this is the dirctionnnnn',
+          this.locationService.convertDegreesToDirectionText(
+            this.currentPhoto.Direction
+          )
+        );
         this.saveImage();
       } else {
         setTimeout(() => {
