@@ -132,7 +132,7 @@ export class LocationService {
       return 247.5;
     }
     if (direction === 'NorthWest') {
-      return 204.5;
+      return 293.5;
     }
     return -1;
   }
