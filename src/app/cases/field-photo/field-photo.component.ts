@@ -530,17 +530,7 @@ export class FieldPhotosComponent implements OnInit {
                       !this.imageProvider.imageLocation1.hasValidDirection() ||
                       !this.imageProvider.imageLocation2.hasValidDirection()
                     ) {
-                      // setTimeout(() => {
-                      //   Dialogs.alert({
-                      //     title: 'Bad Direction',
-                      //     message:
-                      //       'Cannot use photo. The phone direction cannot be determined.',
-                      //     okButtonText: 'OK',
-                      //   }).then(() => {});
-                      // }, 1000);
-                      // this.imageProvider.imageLocation2.direction = -1;
-                      // this.isSearching = false;
-                      // return;
+                      this.isSearching = false;
                       this.showActionDialog();
                       return;
                     }
@@ -584,33 +574,9 @@ export class FieldPhotosComponent implements OnInit {
                       this.isSearching = false;
                       return;
                     }
-
-                    console.log('added image');
-
-                    this.addImage(
-                      this.previewSource,
-                      this.imageProvider.imageLocation2
-                    ).then((flag) => {
-                      if (flag) {
-                        this.showComment('', commentMode.add);
-                        this.addComments = flag;
-                        this.isSearching = false;
-                      }
-                    });
-
-                    if (this.screenOrientation1 === 1) {
-                      this.setOrientation(screenOrientationMode.Portrait);
-                    }
-                    if (this.screenOrientation1 === 2) {
-                      this.setOrientation(screenOrientationMode.Portrait);
-                    }
-                    if (this.screenOrientation1 === 3) {
-                      this.setOrientation(screenOrientationMode.LandscapeLeft);
-                    }
-                    if (this.screenOrientation1 === 4) {
-                      this.setOrientation(screenOrientationMode.LandscapeRight);
-                    }
-                    this.enableRotation();
+                    //Happy Path
+                    console.log('happy');
+                    this.saveImage();
                   })
                   .catch((error) => {
                     this.isSearching = false;
@@ -639,6 +605,34 @@ export class FieldPhotosComponent implements OnInit {
           okButtonText: 'OK',
         }).then(() => {});
       });
+  }
+
+  saveImage() {
+    console.log('happy1');
+    this.addImage(this.previewSource, this.imageProvider.imageLocation2).then(
+      (flag) => {
+        if (flag) {
+          console.log('happy3');
+          this.showComment('', commentMode.add);
+          this.addComments = flag;
+          this.isSearching = false;
+        }
+      }
+    );
+
+    if (this.screenOrientation1 === 1) {
+      this.setOrientation(screenOrientationMode.Portrait);
+    }
+    if (this.screenOrientation1 === 2) {
+      this.setOrientation(screenOrientationMode.Portrait);
+    }
+    if (this.screenOrientation1 === 3) {
+      this.setOrientation(screenOrientationMode.LandscapeLeft);
+    }
+    if (this.screenOrientation1 === 4) {
+      this.setOrientation(screenOrientationMode.LandscapeRight);
+    }
+    this.enableRotation();
   }
 
   setOrientation(currentOrientation: number) {
@@ -959,15 +953,24 @@ export class FieldPhotosComponent implements OnInit {
       cancelable: false, // Android only
     };
 
-    Dialogs.action(actionOptions).then((result) => {
-      console.log('Dialog result: ', result);
-      if (result !== 'Cancel') {
-        this.currentPhoto.Direction = 1234567;
-      }
-      if (result === 'Options1') {
-        // Do action 1
-      } else if (result === 'Option2') {
-        // Do action 2
+    Dialogs.action(actionOptions).then((directionText) => {
+      console.log('Dialog result: ', directionText);
+      if (directionText !== 'Cancel') {
+        this.currentPhoto.Direction =
+          this.locationService.convertDirectionTextToDegrees(directionText);
+        this.saveImage();
+      } else {
+        setTimeout(() => {
+          Dialogs.alert({
+            title: 'Bad Direction',
+            message:
+              'Cannot use photo. The phone direction cannot be determined.',
+            okButtonText: 'OK',
+          }).then(() => {});
+        }, 1000);
+        this.imageProvider.imageLocation2.direction = -1;
+        this.isSearching = false;
+        return;
       }
     });
   }

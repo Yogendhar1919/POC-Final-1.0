@@ -109,6 +109,34 @@ export class LocationService {
     return 'Could not determine direction.';
   }
 
+  convertDirectionTextToDegrees(direction: string): number {
+    if (direction === 'North') {
+      return 22.5;
+    }
+    if (direction === 'NorthEast') {
+      return 23.5;
+    }
+    if (direction === 'East') {
+      return 67.5;
+    }
+    if (direction === 'SouthEast') {
+      return 114.5;
+    }
+    if (direction === 'South') {
+      return 157.5;
+    }
+    if (direction === 'SouthWest') {
+      return 203.5;
+    }
+    if (direction === 'West') {
+      return 247.5;
+    }
+    if (direction === 'NorthWest') {
+      return 204.5;
+    }
+    return -1;
+  }
+
   private createLocationFromPhotoLocation(
     photoLocation: PhotoLocation
   ): geoLocation.Location {
