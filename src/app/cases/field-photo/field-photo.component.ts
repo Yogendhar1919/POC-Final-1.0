@@ -946,13 +946,11 @@ export class FieldPhotosComponent implements OnInit {
   }
 
   showHideField() {
-    console.log('show');
     this.showCountryPicker = true;
   }
   selectedCountyChanged(args) {
-    console.log('hide');
     const picker = <ListPicker>args.object;
     this.textFieldValue = this.listPickerCountries[picker.selectedIndex];
-    this.showCountryPicker = false;
+    //this.showCountryPicker = false;
   }
 }

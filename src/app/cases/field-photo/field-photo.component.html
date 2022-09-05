@@ -31,20 +31,6 @@
       [photo]="currentPhoto"
       [croparline]="arLine"
     ></PhotoComment>
-    <StackLayout orientation="vertical">
-      <TextField
-        [(ngModel)]="textFieldValue"
-        hint="{{ textFieldValue }}"
-        editable="false"
-        (tap)="showHideField()"
-      ></TextField>
-    </StackLayout>
-    <StackLayout orientation="vertical" *ngIf="showCountryPicker">
-      <ListPicker
-        [items]="listPickerCountries"
-        (selectedIndexChange)="selectedCountyChanged($event)"
-      ></ListPicker>
-    </StackLayout>
   </StackLayout>
   <DockLayout #formContainer stretchLastChild="true" visibility="visible">
     <StackLayout dock="bottom" row="1" orientation="horizontal" class="nav-bar">
@@ -247,6 +233,25 @@
               src="{{ currentPhotoPath }}"
             ></Image>
           </stacklayout>
+          <StackLayout row="10" col="0" orientation="vertical">
+            <TextField
+              [(ngModel)]="textFieldValue"
+              hint="{{ textFieldValue }}"
+              editable="false"
+              (tap)="showHideField()"
+            ></TextField>
+          </StackLayout>
+          <StackLayout
+            row="11"
+            col="0"
+            orientation="vertical"
+            *ngIf="showCountryPicker"
+          >
+            <ListPicker
+              [items]="listPickerCountries"
+              (selectedIndexChange)="selectedCountyChanged($event)"
+            ></ListPicker>
+          </StackLayout>
         </GridLayout>
       </StackLayout>
     </ScrollView>
