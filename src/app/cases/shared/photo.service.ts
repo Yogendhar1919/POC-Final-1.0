@@ -106,13 +106,11 @@ export class PhotoService {
         cropARLine.getAdjuster(),
         cropARLine.CountyId
       );
-      console.log(photoLocation);
       if (
         this.locationService.convertDegreesToDirectionText(
           photoLocation.direction
         ).length > 9
       ) {
-        console.log('jinkinchikikiiiiiiiii', photoLocation.direction);
         reject(new Error('Failed to save image'));
         return;
       }
