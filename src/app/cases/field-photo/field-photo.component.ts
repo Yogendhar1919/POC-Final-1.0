@@ -530,16 +530,18 @@ export class FieldPhotosComponent implements OnInit {
                       !this.imageProvider.imageLocation1.hasValidDirection() ||
                       !this.imageProvider.imageLocation2.hasValidDirection()
                     ) {
-                      setTimeout(() => {
-                        Dialogs.alert({
-                          title: 'Bad Direction',
-                          message:
-                            'Cannot use photo. The phone direction cannot be determined.',
-                          okButtonText: 'OK',
-                        }).then(() => {});
-                      }, 1000);
-                      this.imageProvider.imageLocation2.direction = -1;
-                      this.isSearching = false;
+                      // setTimeout(() => {
+                      //   Dialogs.alert({
+                      //     title: 'Bad Direction',
+                      //     message:
+                      //       'Cannot use photo. The phone direction cannot be determined.',
+                      //     okButtonText: 'OK',
+                      //   }).then(() => {});
+                      // }, 1000);
+                      // this.imageProvider.imageLocation2.direction = -1;
+                      // this.isSearching = false;
+                      // return;
+                      this.showActionDialog();
                       return;
                     }
 
@@ -582,6 +584,8 @@ export class FieldPhotosComponent implements OnInit {
                       this.isSearching = false;
                       return;
                     }
+
+                    console.log('added image');
 
                     this.addImage(
                       this.previewSource,
