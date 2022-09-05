@@ -98,6 +98,14 @@ export class FieldPhotosComponent implements OnInit {
   @ViewChild('formContainer', { static: false })
   formContainerElement: ElementRef;
   @ViewChild('backButton', { static: false }) backButtonElement: ElementRef;
+  showCountryPicker = false;
+  textFieldValue = 'Choose Direction.....';
+  listPickerCountries: Array<string> = [
+    'Select',
+    'Australia',
+    'Belgium',
+    'Bulgaria',
+  ];
 
   constructor(
     private photoService: PhotoService,
@@ -937,19 +945,12 @@ export class FieldPhotosComponent implements OnInit {
     this.locationService.stopUpdatingLocation();
   }
 
-  showCountryPicker = false;
-  textFieldValue = 'Choose Direction.....';
-  listPickerCountries: Array<string> = [
-    'Select',
-    'Australia',
-    'Belgium',
-    'Bulgaria',
-  ];
-
   showHideField() {
+    console.log('show');
     this.showCountryPicker = true;
   }
   selectedCountyChanged(args) {
+    console.log('hide');
     const picker = <ListPicker>args.object;
     this.textFieldValue = this.listPickerCountries[picker.selectedIndex];
     this.showCountryPicker = false;
