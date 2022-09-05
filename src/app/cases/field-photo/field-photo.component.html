@@ -193,6 +193,12 @@
             col="1"
             colSpan="3"
           ></Label>
+          <Label
+            row="5"
+            col="2"
+            text="Get Direction"
+            (tap)="showActionDialog()"
+          ></Label>
 
           <Label text="Adjuster:" row="6" col="0"></Label>
           <Label
@@ -233,25 +239,6 @@
               src="{{ currentPhotoPath }}"
             ></Image>
           </stacklayout>
-          <StackLayout row="10" col="0" orientation="vertical">
-            <TextField
-              [(ngModel)]="textFieldValue"
-              hint="{{ textFieldValue }}"
-              editable="false"
-              (tap)="showHideField()"
-            ></TextField>
-          </StackLayout>
-          <StackLayout
-            row="11"
-            col="0"
-            orientation="vertical"
-            *ngIf="showCountryPicker"
-          >
-            <ListPicker
-              [items]="listPickerCountries"
-              (selectedIndexChange)="selectedCountyChanged($event)"
-            ></ListPicker>
-          </StackLayout>
         </GridLayout>
       </StackLayout>
     </ScrollView>

@@ -953,4 +953,35 @@ export class FieldPhotosComponent implements OnInit {
     this.textFieldValue = this.listPickerCountries[picker.selectedIndex];
     //this.showCountryPicker = false;
   }
+
+  showActionDialog() {
+    const actionOptions = {
+      title: 'Direction',
+      message: 'Choose Direction',
+      cancelButtonText: 'Cancel',
+      actions: [
+        'North',
+        'NorthEast',
+        'NorthWest',
+        'South',
+        'SouthEast',
+        'SouthWest',
+        'East',
+        'West',
+      ],
+      cancelable: false, // Android only
+    };
+
+    Dialogs.action(actionOptions).then((result) => {
+      console.log('Dialog result: ', result);
+      if (result !== 'Cancel') {
+        this.currentPhoto.Direction = 1234567;
+      }
+      if (result === 'Options1') {
+        // Do action 1
+      } else if (result === 'Option2') {
+        // Do action 2
+      }
+    });
+  }
 }
