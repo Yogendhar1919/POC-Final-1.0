@@ -380,6 +380,7 @@ export class FieldPhotosComponent implements OnInit {
             })
           )
           .then((picture) => {
+            console.log('pass 1');
             this.imageProvider.current = picture;
 
             // if you need image source
