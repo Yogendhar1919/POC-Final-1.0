@@ -42,6 +42,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ImageSource, Screen } from '@nativescript/core';
 import { Path } from '../shared/path';
 import { ClaimsFileSystemService } from '../shared/claims-filesystem.service';
+import { ListPicker } from '@nativescript/core';
 
 export enum commentMode {
   add,
@@ -934,5 +935,23 @@ export class FieldPhotosComponent implements OnInit {
     this.locationService.stopWatchingLocation();
     this.locationService.stopUpdatingHeading();
     this.locationService.stopUpdatingLocation();
+  }
+
+  showCountryPicker = false;
+  textFieldValue = 'Choose Direction.....';
+  listPickerCountries: Array<string> = [
+    'Select',
+    'Australia',
+    'Belgium',
+    'Bulgaria',
+  ];
+
+  showHideField() {
+    this.showCountryPicker = true;
+  }
+  selectedCountyChanged(args) {
+    const picker = <ListPicker>args.object;
+    this.textFieldValue = this.listPickerCountries[picker.selectedIndex];
+    this.showCountryPicker = false;
   }
 }

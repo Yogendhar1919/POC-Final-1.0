@@ -45,8 +45,8 @@ export class LocationService {
             let photoLocationData = new PhotoLocation();
             photoLocationData.latitude = location.latitude;
             photoLocationData.longitude = location.longitude;
-            //photoLocationData.direction = this.getDirection();
-            photoLocationData.direction = -1;
+            photoLocationData.direction = this.getDirection();
+            //photoLocationData.direction = -1;
             photoLocationData.geoLocation = location;
             resolve(photoLocationData);
           })
