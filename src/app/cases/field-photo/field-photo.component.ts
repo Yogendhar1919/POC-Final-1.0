@@ -723,6 +723,7 @@ export class FieldPhotosComponent implements OnInit {
   }
 
   private editCommentCompleted(): void {
+    console.log('bum bum');
     this.currentPhoto.Comments =
       this.photoCommentElement.commentElement.nativeElement.text;
     let needsLocations: boolean =
