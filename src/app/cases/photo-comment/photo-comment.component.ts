@@ -99,4 +99,18 @@ export class PhotoCommentComponent {
     this.commentLabel += this.standardLabel;
     this.commentPrompt += this.standardPrompt;
   }
+
+  closeCommentsInput(): void {
+    let commentsField: TextView = <TextView>this.commentElement.nativeElement;
+    if (commentsField.android) {
+      setTimeout(() => {
+        commentsField.dismissSoftInput();
+        commentsField.android.clearFocus();
+      }, 300);
+    } else {
+      setTimeout(() => {
+        commentsField.dismissSoftInput();
+      }, 0);
+    }
+  }
 }
