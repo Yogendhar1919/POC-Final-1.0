@@ -38,6 +38,7 @@ export class PhotoCommentComponent {
   }
 
   public onChange(args: any): void {
+    console.log('bum');
     let textView: TextView = <TextView>args.object;
     if (textView.text === undefined) {
       this.commentLength = 0;
@@ -55,20 +56,6 @@ export class PhotoCommentComponent {
     }
   }
 
-  closeCommentsInput(): void {
-    let commentsField: TextView = <TextView>this.commentElement.nativeElement;
-    if (commentsField.android) {
-      setTimeout(() => {
-        commentsField.dismissSoftInput();
-        commentsField.android.clearFocus();
-      }, 300);
-    } else {
-      setTimeout(() => {
-        commentsField.dismissSoftInput();
-      }, 0);
-    }
-  }
-
   private createCommentPlaceholder(): void {
     let needsLocations: boolean =
       this.cropARLinePhoto.Latitude === undefined ||
@@ -81,7 +68,7 @@ export class PhotoCommentComponent {
     let needsDirection: boolean =
       this.cropARLinePhoto.Direction === undefined ||
       this.cropARLinePhoto.Direction === null ||
-      this.cropARLinePhoto.Direction <= 0;
+      this.cropARLinePhoto.Direction < 0;
 
     let needsAcreage: boolean = this.cropARLine.isDefaultLine();
     let hasRequirements: boolean =
