@@ -109,10 +109,12 @@ export class FieldPhotosComponent implements OnInit {
     private locationService: LocationService,
     private route: ActivatedRoute
   ) {
+    console.log('first');
     this.page.on(Page.navigatingToEvent, async () => {
       this.locationService.startUpdatingLocation();
       this.locationService.startUpdatingHeading();
       this.locationService.startWatchLocation();
+      console.log('second');
     });
   }
 
@@ -723,9 +725,10 @@ export class FieldPhotosComponent implements OnInit {
   }
 
   private editCommentCompleted(): void {
-    console.log('bum bum');
+    console.log('comment length -');
     this.currentPhoto.Comments =
       this.photoCommentElement.commentElement.nativeElement.text;
+    console.log(this.currentPhoto.Comments.length);
     let needsLocations: boolean =
       this.currentPhoto.Latitude === undefined ||
       this.currentPhoto.Latitude === null ||

@@ -41,7 +41,7 @@ export class PhotoCommentComponent {
     console.log('bum');
     let textView: TextView = <TextView>args.object;
     if (textView.text === undefined) {
-      this.commentLength = 0;
+      //this.commentLength = 0;
     } else {
       this.commentLength = textView.text.length;
     }
